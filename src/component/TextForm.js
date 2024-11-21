@@ -59,13 +59,14 @@ export default function Textform(props){
                 }}></textarea>
             </div>
             <div>
-            <button type="button" className="btn btn-dark mx-1 my-2" onClick={toup}>To-upper</button>
-            <button type="button" className="btn btn-dark mx-1 my-2" onClick={tolow}>To-lower</button>
-            <button type="button" className="btn btn-dark mx-1 my-2" onClick={toReverse}>Reverse</button>
-            <button type="button" className="btn btn-dark mx-1 my-2" onClick={toCopy}>Copy text</button>
-            <button type="button" className="btn btn-dark mx-1 my-2" onClick={handleExtraSpaces}>Remove Extra spaces</button>
+            <button type="button" className="btn btn-dark mx-1 my-2" onClick={toup}disabled={text.length===0}>To-upper</button>
+            <button type="button" className="btn btn-dark mx-1 my-2" onClick={tolow} disabled={text.length===0}>To-lower
+            </button>
+            <button type="button" className="btn btn-dark mx-1 my-2" onClick={toReverse}disabled={text.length===0}>Reverse</button>
+            <button type="button" className="btn btn-dark mx-1 my-2" onClick={toCopy}disabled={text.length===0}>Copy text</button>
+            <button type="button" className="btn btn-dark mx-1 my-2" onClick={handleExtraSpaces}disabled={text.length===0}>Remove Extra spaces</button>
            
-            <button type="button" className="btn btn-primary mx-2 my-2" onClick={toclear}>clear</button>
+            <button type="button" className="btn btn-primary mx-2 my-2" onClick={toclear}disabled={text.length===0}>clear</button>
             </div>
         </div>
         <div className='container' style={{backgroundColor:props. mode==='light'?'white':'#214071',
@@ -75,7 +76,7 @@ export default function Textform(props){
                 your text's additional information:-
             </h1>
             <p>
-                your text contains {text.length===0?0:text.split(" ").length} words and {text.length} character.
+                your text contains {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} character.
             </p>
             <p>{text.length===0?0:0.008*text.split(" ").length} minutes to read your text</p>
             <h2>
